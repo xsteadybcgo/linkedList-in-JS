@@ -25,7 +25,7 @@ function LinkedList() {
         length++; //更新列表的长度 //{6}
     };
     
-    // 向列表的特定位置插入一个新的项
+    // 在任意位置插入元素
     this.insert = function(position, element){
        //检查越界值
         if (position >= 0 && position <= length) { //{1}
@@ -51,7 +51,7 @@ function LinkedList() {
         }
     };
     
-    // 在任意位置插入元素
+    // 从列表的特定位置移除一项
     this.removeAt = function(position){
       //检查越界值
         if (position > -1 && position < length) {
@@ -74,12 +74,40 @@ function LinkedList() {
         } else {
             return null;
         }
-    }; // 从列表的特定位置移除一项
-    this.remove = function(element){}; //从列表中移除一项
-    this.indexOf = function(element){};
-    this.isEmpty = function() {};
-    this.size = function() {};
-    this.getHead = function(){};
+    }; 
+    
+    
+    //从列表中移除一项
+    this.remove = function(element){
+        let index = this.indexOf(element);
+        return this.removeAt(index)
+    }; 
+    
+    this.indexOf = function(element){
+        let current = head,
+        index = -1;
+        while (current) {
+            if (element === current.element) {
+                return index;
+            }
+                index++;
+                current = current.next;
+            }
+        return -1;
+    };
+    
+    this.isEmpty = function() {
+        return length === 0;
+    };
+    
+    this.size = function() {
+        return length;
+    };
+    
+    this.getHead = function(){
+        return head;
+    };
+    
     this.toString = function(){
         let current = head, 
         string = ''; 
@@ -89,5 +117,6 @@ function LinkedList() {
         }
         return string;
     };
+    
     this.print = function(){};
 }
